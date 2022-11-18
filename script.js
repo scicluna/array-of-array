@@ -48,7 +48,7 @@ function allRoll(quantity, size, drop){
     for (i=0; i<quantity; i++){
         const addDice =diceRoll(size)
     //handling explosive dice rolling
-        if (addDice == size && explosiveFlag == "on"){
+        if (addDice == size && explosiveFlag == "on" && size != 1){
             i--
             explosiveFlag = "off"
         }
@@ -90,6 +90,7 @@ function totalAll(array){
     return total
 }
 
+//Run everything when we click the "Roll" button
 rollBtn.addEventListener('click', function(){
     //init functions
     const arraySplit = splitArray(splitString(string.value))
@@ -104,19 +105,18 @@ rollBtn.addEventListener('click', function(){
     resultsList.appendChild(newLi);
         //cool animation
         setTimeout(function(){
-            newLi.className = newLi.className +" show"; 
-        }, 10);
+            newLi.className = newLi.className +" show";  }, 10);
     //Repeat for Total 
     const newLi2 = document.createElement("LI");
     const liContent2 = document.createTextNode(total);
     newLi2.appendChild(liContent2);
     totalsList.appendChild(newLi2);
             //cool animation
-            setTimeout(function(){
-                newLi2.className = newLi2.className +" show"; 
-            }, 10);
+         setTimeout(function(){
+            newLi2.className = newLi2.className +" show";  }, 10);
 })
 
+//Run everything when we hit enter while in the input field
 string.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {    
         //init functions
@@ -132,16 +132,14 @@ string.addEventListener('keypress', function (e) {
         resultsList.appendChild(newLi);
             //cool animation
             setTimeout(function(){
-                newLi.className = newLi.className +" show"; 
-            }, 10);
+                newLi.className = newLi.className +" show";  }, 10);
         //Repeat for Total 
         const newLi2 = document.createElement("LI");
         const liContent2 = document.createTextNode(total);
         newLi2.appendChild(liContent2);
         totalsList.appendChild(newLi2);
                 //cool animation
-                setTimeout(function(){
-                    newLi2.className = newLi2.className +" show"; 
-                }, 10);
+            setTimeout(function(){
+                newLi2.className = newLi2.className +" show";  }, 10);
             }
     });

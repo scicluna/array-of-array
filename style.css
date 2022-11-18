@@ -1,3 +1,4 @@
+/*Initial Setup - setting up our font mostly*/
 * {
     margin: 0;
     padding: 0;
@@ -5,6 +6,7 @@
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
+/*mostly specifying how much space our explanation will take up */
 p {
     height: 100 vh;
     display: flex;
@@ -12,13 +14,14 @@ p {
     font-size: 12px;
 }
 
+/* specifying how much space the h1 header will take up */
 h1 {
     height: 100 vh;
     display: flex;
     justify-content: space-around;
 }
 
-
+/* centering the results listand removing the bullet points */
 div.results-list {
     align-items:center;
     display: flex;
@@ -30,10 +33,12 @@ div.results-list {
 
 }
 
+/* making sure our spawning list is centered */
 .input-here{
 text-align:center;
 }
 
+/*making sure that the column spawns new entries at the top */
 ul {
     display: flex;
     flex-direction: column-reverse;
@@ -41,13 +46,14 @@ ul {
     overflow: hidden;
 }
 
+/*boldening the totals weight and making sure it has space between it and the results*/
 ul.totals {
     font-weight: bolder;
     padding-left: 50px;
     list-style-type: none;
 }
 
-
+/*making sure the list begins invisble so that I can make it show later*/
 li {
     height: 0;
     margin: 0;
