@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+p {
+    height: 100 vh;
+    display: flex;
+    justify-content: space-around;
+    font-size: 12px;
+}
+
+h1 {
+    height: 100 vh;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+div.results-list {
+    align-items:center;
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    line-height: 30px;
+    font-weight:500
+    
+
+}
+
+.input-here{
+text-align:center;
+}
+
+ul {
+    display: flex;
+    flex-direction: column-reverse;
+    list-style-type: none;
+    overflow: hidden;
+}
+
+ul.totals {
+    font-weight: bolder;
+    padding-left: 50px;
+    list-style-type: none;
+}
+
+
+li {
+    height: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    list-style-type: none;
+    overflow: hidden;
+}
+
+
+
+/* all of this cool stuff was from https://cssanimation.rocks/list-items/ */
+
+li.show {
+    height: 2em;
+    margin: 2px 0;
+  }
+
+  .fade li {
+    transition: all 0.4s ease-out;
+    opacity: 0;
+  }
+  .fade li.show {
+    opacity: 1;
+  }
+
+  .swing {
+    perspective: 100px;
+  }
+
+  .swing li {
+    opacity: 0;
+    transform: rotateX(-90deg);
+    transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
+  }
+  
+  .swing li.show {
+    opacity: 1;
+    transform: none;
+    transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
+  }
+  

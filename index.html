@@ -4,23 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dice Roller</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <section class ="center-this">
+    <div class="input-here">
     <h1>Roll the Dice!</h1>
-    <div class="input">
+    <p>use format 4d6. can use 4d6+1 to add. 4d6d1 to drop the lowest. 4d6! to explode the dice. also works in combination 1d6+4d6+3d6!</p> 
         <input class="dice-string">
         <button class ="roller">Roll!</button>
     </div>
-    <div class="results-list">
+</section>
+<section class = "swing">
+    <div class="results-list fade">
         <ul class ="results"></ul>
         <ul class ="totals"></ul>
-
-
-
     </div>
-
+</section>
 
     <script src="./script.js"></script>
 </body>
