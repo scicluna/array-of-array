@@ -59,11 +59,11 @@ function allRoll(quantity, size, drop){
         let addition = parseInt(quantity)
         rolledDice.push(addition);
     }
-
+//handles dropping dice and sorts
     if (drop != undefined){
         rolledDice = rolledDice.sort((a,b) => b-a).slice(0,rolledDice.length-drop)
     }
-
+//handles no drops and sorts
     else {
         rolledDice = rolledDice.sort((a,b) => b-a)
     }
@@ -79,7 +79,7 @@ function rollAll(array){
     return allDice
 }
 
-//total the dice in a 2d array
+//total the dice in a 2d array - still don't know why not declaring total as a variable works here
 function totalAll(array){
     total = 0;
     for (let i=0;i<array.length;i++){
@@ -116,3 +116,32 @@ rollBtn.addEventListener('click', function(){
                 newLi2.className = newLi2.className +" show"; 
             }, 10);
 })
+
+string.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {    
+        //init functions
+        const arraySplit = splitArray(splitString(string.value))
+        const rolledAll = rollAll(arraySplit);
+        totalAll(rolledAll);
+        //Create an Li
+        const newLi = document.createElement('LI');
+        //liContent must equal the content I want to display 
+        const liContent = document.createTextNode(allDice)
+        newLi.appendChild(liContent);
+        //Attach the Li to the results list
+        resultsList.appendChild(newLi);
+            //cool animation
+            setTimeout(function(){
+                newLi.className = newLi.className +" show"; 
+            }, 10);
+        //Repeat for Total 
+        const newLi2 = document.createElement("LI");
+        const liContent2 = document.createTextNode(total);
+        newLi2.appendChild(liContent2);
+        totalsList.appendChild(newLi2);
+                //cool animation
+                setTimeout(function(){
+                    newLi2.className = newLi2.className +" show"; 
+                }, 10);
+            }
+    });
