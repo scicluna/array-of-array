@@ -70,7 +70,8 @@ function allRoll(quantity, size, drop){
     else {
         rolledDice = rolledDice.sort((a,b) => a-b)
     }
-    return rolledDice
+
+    return colorify(rolledDice, size);
 }
 
 //put all of the dice into a single array
@@ -78,6 +79,7 @@ function rollAll(array){
     allDice = []
     for (let i=0; i<array.length;i++){
         allDice.push(allRoll(array[i][0],array[i][1],array[i][2]));
+    
     }
     return allDice
 }
@@ -98,6 +100,47 @@ function flattenArrays(array){
     return arr1
 }
 
+function colorify (array, size) {
+    arrayofObject = []
+    for (i=0;i<array.length;i++){
+        if (array[i] == size){
+            let newObject = Object.assign({}, array[i])
+            newObject.no = array[i]
+            newObject.color = "green"
+            arrayofObject.push(newObject)
+        }
+        else if (array[i] == 1){
+            let newObject = Object.assign({}, array[i])
+            newObject.no = array[i]
+            newObject.color = "red"
+            arrayofObject.push(newObject)
+        }
+
+        else {
+            let newObject = Object.assign({}, array[i])
+            newObject.no = array[i]
+            newObject.color = "black"
+            arrayofObject.push(newObject)
+    }
+}
+return arrayofObject
+
+}
+function no (item){
+    return item.no
+}
+
+function color (item){
+    return item.color
+}
+
+function sum (prev, next){
+    return prev + next;
+}
+
+function value (item){
+    return item.value
+}
 
 
 //Run everything when we click the "Roll" button
@@ -105,20 +148,24 @@ rollBtn.addEventListener('click', function(){
     //init functions
     const arraySplit = splitArray(splitString(string.value))
     const rolledAll = rollAll(arraySplit);
-    totalAll(rolledAll);
+    console.log(rolledAll);
     const flatArray = flattenArrays(allDice);
-    
+    console.log(flatArray)
     for (let i = 0;i<flatArray.length;i++){
-
-  //Create an Li
-  const newLi = document.createElement('LI');
-  //liContent must equal the content I want to display 
-  const liContent = document.createTextNode(flatArray[i])
-  newLi.appendChild(liContent);
-  //Attach the Li to the results list
-  resultsList.insertBefore(newLi, resultsList.firstChild)
-
-   
+    const numbertoadd = no(flatArray[i]);
+    //Create an Li
+    const newLi = document.createElement('LI');
+    //liContent must equal the content I want to display 
+    const liContent = document.createTextNode(numbertoadd)
+    newLi.appendChild(liContent);
+    if(color(flatArray[i]) == "red"){
+        newLi.className = newLi.className + "red" + " "
+    }
+    if(color(flatArray[i]) == "green"){
+        newLi.className = newLi.className + "green" + " "
+    }
+    //Attach the Li to the results list
+    resultsList.insertBefore(newLi, resultsList.firstChild)
     //cool animation
     setTimeout(function(){
         newLi.className = newLi.className +"show";  }, 10);
@@ -128,6 +175,10 @@ rollBtn.addEventListener('click', function(){
     //line break
 
     //Repeat for Total 
+    let total = 0
+    for (let i=0; i<flatArray.length;i++){
+        total = total + no(flatArray[i])
+    }
     const newLi2 = document.createElement("LI");
     const liContent2 = document.createTextNode(total);
     newLi2.appendChild(liContent2);
@@ -145,41 +196,47 @@ rollBtn.addEventListener('click', function(){
 string.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
             //init functions
-    const arraySplit = splitArray(splitString(string.value))
-    const rolledAll = rollAll(arraySplit);
-    totalAll(rolledAll);
-    const flatArray = flattenArrays(allDice);
-    
-    for (let i = 0;i<flatArray.length;i++){
+//init functions
+const arraySplit = splitArray(splitString(string.value))
+const rolledAll = rollAll(arraySplit);
+const flatArray = flattenArrays(allDice);
+for (let i = 0;i<flatArray.length;i++){
+const numbertoadd = no(flatArray[i]);
+//Create an Li
+const newLi = document.createElement('LI');
+//liContent must equal the content I want to display 
+const liContent = document.createTextNode(numbertoadd)
+newLi.appendChild(liContent);
+if(color(flatArray[i]) == "red"){
+    newLi.className = newLi.className + "red" + " "
+}
+if(color(flatArray[i]) == "green"){
+    newLi.className = newLi.className + "green" + " "
+}
+//Attach the Li to the results list
+resultsList.insertBefore(newLi, resultsList.firstChild)
+//cool animation
+setTimeout(function(){
+    newLi.className = newLi.className +"show";  }, 10);
+}
+const linebreak = document.createElement("br");
+resultsList.insertBefore(linebreak, resultsList.firstChild)
+//line break
 
-  //Create an Li
-  const newLi = document.createElement('LI');
-  //liContent must equal the content I want to display 
-  const liContent = document.createTextNode(flatArray[i])
-  newLi.appendChild(liContent);
-  //Attach the Li to the results list
-  resultsList.insertBefore(newLi, resultsList.firstChild)
-
-   
-    //cool animation
-    setTimeout(function(){
-        newLi.className = newLi.className +"show";  }, 10);
-    }
-    const linebreak = document.createElement("br");
-    resultsList.insertBefore(linebreak, resultsList.firstChild)
-    //line break
-
-    //Repeat for Total 
-    const newLi2 = document.createElement("LI");
-    const liContent2 = document.createTextNode(total);
-    newLi2.appendChild(liContent2);
-    totalsList.insertBefore(newLi2, totalsList.firstChild)
-            //cool animation
-         setTimeout(function(){
-            newLi2.className = newLi2.className +" show";  }, 10);
-            //line break
-    const linebreak2 = document.createElement("br");
-    totalsList.insertBefore(linebreak2, totalsList.firstChild)
-
+//Repeat for Total 
+let total = 0
+for (let i=0; i<flatArray.length;i++){
+    total = total + no(flatArray[i])
+}
+const newLi2 = document.createElement("LI");
+const liContent2 = document.createTextNode(total);
+newLi2.appendChild(liContent2);
+totalsList.insertBefore(newLi2, totalsList.firstChild)
+        //cool animation
+     setTimeout(function(){
+        newLi2.className = newLi2.className +" show";  }, 10);
+        //line break
+const linebreak2 = document.createElement("br");
+totalsList.insertBefore(linebreak2, totalsList.firstChild)
 
             }})

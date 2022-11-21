@@ -63,6 +63,7 @@ section {
 li.show {
   height: 2em;
   margin: 2px 0;
+  padding: 5px;
 }
 
 .fade li {
@@ -87,4 +88,12 @@ li.show {
   opacity: 1;
   transform: none;
   transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
+}
+
+.red {
+  color:red;
+}
+
+.green {
+  color:green;
 }
