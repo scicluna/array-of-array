@@ -2,8 +2,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 /*mostly specifying how much space our explanation will take up */
@@ -21,78 +20,71 @@ h1 {
     justify-content: space-around;
 }
 
-/* centering the results listand removing the bullet points */
-div.results-list {
-    align-items:center;
-    display: flex;
-    list-style-type: none;
-    justify-content: center;
-    line-height: 30px;
-    font-weight:500
-    
-
-}
-
-/* making sure our spawning list is centered */
+/* Centering the Input */
 .input-here{
-text-align:center;
-}
+  text-align:center;
+  }
+  
 
-/*making sure that the column spawns new entries at the top */
-ul {
-    display: flex;
-    flex-direction: column-reverse;
-    list-style-type: none;
-    overflow: hidden;
-}
+/* THE ISSUE ZONE */
 
-/*boldening the totals weight and making sure it has space between it and the results*/
-ul.totals {
-    font-weight: bolder;
-    padding-left: 50px;
-    list-style-type: none;
-}
-
-/*making sure the list begins invisble so that I can make it show later*/
 li {
-    height: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column-reverse;
-    list-style-type: none;
-    overflow: hidden;
+  height:0;
+  margin:0;
+  padding:0;
+  display: inline-block;
+  line-height: 30px;
 }
+ol {
+  display: inline-block;
+  overflow:hidden;
+  list-style-type: none
+}
+
+.results-list{
+  display:inline-block;
+  margin: 0 auto;
+}
+
+.totals{
+  padding-left: 100px;
+  font-weight:bolder;
+}
+
+section {
+ text-align: center;
+}
+
 
 
 
 /* all of this cool stuff was from https://cssanimation.rocks/list-items/ */
 
 li.show {
-    height: 2em;
-    margin: 2px 0;
-  }
+  height: 2em;
+  margin: 2px 0;
+}
 
-  .fade li {
-    transition: all 0.4s ease-out;
-    opacity: 0;
-  }
-  .fade li.show {
-    opacity: 1;
-  }
+.fade li {
+  transition: all 0.4s ease-out;
+  opacity: 0;
+}
+.fade li.show {
+  opacity: 1;
+}
 
-  .swing {
-    perspective: 100px;
-  }
+.swing {
+  perspective: 100px;
+}
 
-  .swing li {
-    opacity: 0;
-    transform: rotateX(-90deg);
-    transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
-  }
-  
-  .swing li.show {
-    opacity: 1;
-    transform: none;
-    transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
-  }
-  
+.swing li {
+  opacity: 0;
+  transform: rotateX(-90deg);
+  transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
+}
+
+.swing li.show {
+  opacity: 1;
+  transform: none;
+  transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
+}
