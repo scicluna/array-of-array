@@ -151,6 +151,10 @@ rollBtn.addEventListener('click', function(){
     console.log(rolledAll);
     const flatArray = flattenArrays(allDice);
     console.log(flatArray)
+
+
+    const newDiv = document.createElement('div');
+
     for (let i = 0;i<flatArray.length;i++){
     const numbertoadd = no(flatArray[i]);
     //Create an Li
@@ -158,21 +162,24 @@ rollBtn.addEventListener('click', function(){
     //liContent must equal the content I want to display 
     const liContent = document.createTextNode(numbertoadd)
     newLi.appendChild(liContent);
+
+    //color hacks
     if(color(flatArray[i]) == "red"){
         newLi.className = newLi.className + "red" + " "
     }
     if(color(flatArray[i]) == "green"){
         newLi.className = newLi.className + "green" + " "
     }
+
     //Attach the Li to the results list
-    resultsList.insertBefore(newLi, resultsList.firstChild)
+    resultsList.appendChild(newLi)
+    newDiv.appendChild(newLi);
+    
     //cool animation
     setTimeout(function(){
         newLi.className = newLi.className +"show";  }, 10);
     }
-    const linebreak = document.createElement("br");
-    resultsList.insertBefore(linebreak, resultsList.firstChild)
-    //line break
+    resultsList.appendChild(newDiv)
 
     //Repeat for Total 
     let total = 0
@@ -182,13 +189,10 @@ rollBtn.addEventListener('click', function(){
     const newLi2 = document.createElement("LI");
     const liContent2 = document.createTextNode(total);
     newLi2.appendChild(liContent2);
-    totalsList.insertBefore(newLi2, totalsList.firstChild)
+    totalsList.appendChild(newLi2, totalsList.firstChild)
             //cool animation
          setTimeout(function(){
             newLi2.className = newLi2.className +" show";  }, 10);
-            //line break
-    const linebreak2 = document.createElement("br");
-    totalsList.insertBefore(linebreak2, totalsList.firstChild)
         }
         )
 
@@ -196,47 +200,53 @@ rollBtn.addEventListener('click', function(){
 string.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
             //init functions
-//init functions
-const arraySplit = splitArray(splitString(string.value))
-const rolledAll = rollAll(arraySplit);
-const flatArray = flattenArrays(allDice);
-for (let i = 0;i<flatArray.length;i++){
-const numbertoadd = no(flatArray[i]);
-//Create an Li
-const newLi = document.createElement('LI');
-//liContent must equal the content I want to display 
-const liContent = document.createTextNode(numbertoadd)
-newLi.appendChild(liContent);
-if(color(flatArray[i]) == "red"){
-    newLi.className = newLi.className + "red" + " "
-}
-if(color(flatArray[i]) == "green"){
-    newLi.className = newLi.className + "green" + " "
-}
-//Attach the Li to the results list
-resultsList.insertBefore(newLi, resultsList.firstChild)
-//cool animation
-setTimeout(function(){
-    newLi.className = newLi.className +"show";  }, 10);
-}
-const linebreak = document.createElement("br");
-resultsList.insertBefore(linebreak, resultsList.firstChild)
-//line break
+    //init functions
+    const arraySplit = splitArray(splitString(string.value))
+    const rolledAll = rollAll(arraySplit);
+    console.log(rolledAll);
+    const flatArray = flattenArrays(allDice);
+    console.log(flatArray)
 
-//Repeat for Total 
-let total = 0
-for (let i=0; i<flatArray.length;i++){
-    total = total + no(flatArray[i])
-}
-const newLi2 = document.createElement("LI");
-const liContent2 = document.createTextNode(total);
-newLi2.appendChild(liContent2);
-totalsList.insertBefore(newLi2, totalsList.firstChild)
-        //cool animation
-     setTimeout(function(){
-        newLi2.className = newLi2.className +" show";  }, 10);
-        //line break
-const linebreak2 = document.createElement("br");
-totalsList.insertBefore(linebreak2, totalsList.firstChild)
 
-            }})
+    const newDiv = document.createElement('div');
+
+    for (let i = 0;i<flatArray.length;i++){
+    const numbertoadd = no(flatArray[i]);
+    //Create an Li
+    const newLi = document.createElement('LI');
+    //liContent must equal the content I want to display 
+    const liContent = document.createTextNode(numbertoadd)
+    newLi.appendChild(liContent);
+
+    //color hacks
+    if(color(flatArray[i]) == "red"){
+        newLi.className = newLi.className + "red" + " "
+    }
+    if(color(flatArray[i]) == "green"){
+        newLi.className = newLi.className + "green" + " "
+    }
+
+    //Attach the Li to the results list
+    resultsList.appendChild(newLi)
+    newDiv.appendChild(newLi);
+    
+    //cool animation
+    setTimeout(function(){
+        newLi.className = newLi.className +"show";  }, 10);
+    }
+    resultsList.appendChild(newDiv)
+
+    //Repeat for Total 
+    let total = 0
+    for (let i=0; i<flatArray.length;i++){
+        total = total + no(flatArray[i])
+    }
+    const newLi2 = document.createElement("LI");
+    const liContent2 = document.createTextNode(total);
+    newLi2.appendChild(liContent2);
+    totalsList.appendChild(newLi2, totalsList.firstChild)
+            //cool animation
+         setTimeout(function(){
+            newLi2.className = newLi2.className +" show";  }, 10);
+        }
+    })
