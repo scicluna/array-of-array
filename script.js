@@ -63,12 +63,11 @@ function allRoll(quantity, size, drop){
 //handles dropping dice and sorts
     if (drop != undefined){
         rolledDice = rolledDice.sort((a,b) => b-a).slice(0,rolledDice.length-drop)
-        rolledDice = rolledDice.sort((a,b) => a-b)
     }
 
 //handles no drops and sorts
     else {
-        rolledDice = rolledDice.sort((a,b) => a-b)
+        rolledDice = rolledDice.sort((a,b) => b-a)
     }
 
     return colorify(rolledDice, size);
@@ -250,3 +249,55 @@ string.addEventListener('keypress', function (e) {
             newLi2.className = newLi2.className +" show";  }, 10);
         }
     })
+    
+    rollBtn.addEventListener('touchstart', function(){
+        //init functions
+        const arraySplit = splitArray(splitString(string.value))
+        const rolledAll = rollAll(arraySplit);
+        console.log(rolledAll);
+        const flatArray = flattenArrays(allDice);
+        console.log(flatArray)
+    
+    
+        const newDiv = document.createElement('div');
+    
+        for (let i = 0;i<flatArray.length;i++){
+        const numbertoadd = no(flatArray[i]);
+        //Create an Li
+        const newLi = document.createElement('LI');
+        //liContent must equal the content I want to display 
+        const liContent = document.createTextNode(numbertoadd)
+        newLi.appendChild(liContent);
+    
+        //color hacks
+        if(color(flatArray[i]) == "red"){
+            newLi.className = newLi.className + "red" + " "
+        }
+        if(color(flatArray[i]) == "green"){
+            newLi.className = newLi.className + "green" + " "
+        }
+    
+        //Attach the Li to the results list
+        resultsList.appendChild(newLi)
+        newDiv.appendChild(newLi);
+        
+        //cool animation
+        setTimeout(function(){
+            newLi.className = newLi.className +"show";  }, 10);
+        }
+        resultsList.appendChild(newDiv)
+    
+        //Repeat for Total 
+        let total = 0
+        for (let i=0; i<flatArray.length;i++){
+            total = total + no(flatArray[i])
+        }
+        const newLi2 = document.createElement("LI");
+        const liContent2 = document.createTextNode(total);
+        newLi2.appendChild(liContent2);
+        totalsList.appendChild(newLi2, totalsList.firstChild)
+                //cool animation
+             setTimeout(function(){
+                newLi2.className = newLi2.className +" show";  }, 10);
+            }
+            )
